@@ -1,42 +1,147 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+@theme {
+  --color-primary: #c2410c;
+  --color-primary-dark: #9a3412;
+  --color-accent-ochre: #b45309;
+  --color-accent-gold: #d97706;
+  --color-accent-green: #14532d;
+  --color-clay: #451a03;
+  --color-background-light: #fffbeb;
+  --color-background-dark: #1c1917;
+
+  --font-display: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #fffbeb;
+    --foreground: #171717;
+  }
+
+  body {
+    color: var(--foreground);
+    background-color: var(--background);
+    @apply font-sans transition-colors duration-300;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@layer utilities {
+  .bg-shuka {
+    background-image: repeating-linear-gradient(90deg,
+        transparent,
+        transparent 50px,
+        rgba(0, 0, 0, 0.05) 50px,
+        rgba(0, 0, 0, 0.05) 100px),
+      repeating-linear-gradient(0deg,
+        transparent,
+        transparent 50px,
+        rgba(0, 0, 0, 0.05) 50px,
+        rgba(0, 0, 0, 0.05) 100px);
   }
+
+  .bg-kiondo {
+    background-image: repeating-linear-gradient(45deg,
+        #c2410c10 0,
+        #c2410c10 1px,
+        transparent 0,
+        transparent 8px),
+      repeating-linear-gradient(-45deg,
+        #c2410c10 0,
+        #c2410c10 1px,
+        transparent 0,
+        transparent 8px);
+  }
+
+  .beaded-frame {
+    border-radius: 50%;
+    position: relative;
+    padding: 6px;
+    background: #fff;
+    box-shadow: 0 0 0 3px #dc2626, 0 0 0 6px #f59e0b, 0 0 0 9px #15803d,
+      0 0 0 12px #fff, 0 0 0 14px #000;
+  }
+
+  .wood-divider {
+    height: 24px;
+    width: 100%;
+    background-color: transparent;
+    background-image: linear-gradient(45deg, transparent 50%, #c2410c 50%),
+      linear-gradient(135deg, transparent 50%, #c2410c 50%);
+    background-size: 20px 20px;
+    background-repeat: repeat-x;
+    @apply opacity-20;
+  }
+
+  .hero-savannah {
+    background: linear-gradient(to bottom, #b45309, #c2410c, #7c2d12);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-marquee {
+  display: flex !important;
+  width: max-content !important;
+  animation: marquee 51.8s linear infinite !important;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+/* Define body background pattern directly without @apply to avoid build errors */
+body {
+  background-image: repeating-linear-gradient(45deg,
+      #c2410c10 0,
+      #c2410c10 1px,
+      transparent 0,
+      transparent 8px),
+    repeating-linear-gradient(-45deg,
+      #c2410c10 0,
+      #c2410c10 1px,
+      transparent 0,
+      transparent 8px);
 }
