@@ -18,11 +18,22 @@ export default function About() {
                     </button>
                 </div>
                 <div className="order-1 md:order-2 flex justify-center">
-                    <img
-                        alt="Portrait of Irene Muchemi-Ndiritu"
-                        className="w-full h-auto"
-                        src="/about-irene-transparent.png"
-                    />
+                    <div className="relative group w-full max-w-[360px]">
+                        {/* Decorative African-themed Box */}
+                        <div className="absolute -inset-3 border-2 border-primary/30 rounded-2xl rotate-2 group-hover:rotate-0 transition-transform duration-500"></div>
+                        <div className="absolute -inset-3 border-2 border-accent-gold/40 rounded-2xl -rotate-2 group-hover:rotate-0 transition-transform duration-500"></div>
+
+                        <div className="relative overflow-hidden rounded-xl shadow-2xl aspect-[2/3] w-full">
+                            <img
+                                alt="Author Irene Muchemi-Ndiritu"
+                                className="w-full h-full object-cover transform transition-transform duration-700 hover:scale-105"
+                                src="/about-author.jpg"
+                            />
+                            {/* Beaded-style overlay pattern on edges */}
+                            <div className="absolute inset-0 border-[12px] border-white/10 pointer-events-none"></div>
+                            <div className="absolute inset-x-0 bottom-0 h-3 bg-shuka opacity-40"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

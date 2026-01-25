@@ -1,12 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isPurchaseOpen, setIsPurchaseOpen] = useState(false);
+    const pathname = usePathname();
+    const isSpecialPage = pathname === "/bio" || pathname === "/media" || pathname === "/contact";
 
     const stores = [
         { name: "Amazon", url: "#" },
@@ -28,25 +31,28 @@ export default function Navbar() {
     return (
         <>
             <nav
-                className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled || isMenuOpen
+                className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled || isMenuOpen || isSpecialPage
                     ? "bg-background-light/95 backdrop-blur-md border-b border-primary/20 shadow-sm py-4"
                     : "bg-transparent py-6"
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-                    <a href="/" className={`font-display text-2xl font-bold tracking-tight transition-colors ${isScrolled || isMenuOpen ? "text-primary-dark" : "text-white"
+                    <a href="/" className={`font-display text-2xl font-bold tracking-tight transition-colors ${isScrolled || isMenuOpen || isSpecialPage ? "text-primary-dark" : "text-white"
                         }`}>
                         Irene Muchemi-Ndiritu
                     </a>
 
                     {/* Desktop Menu */}
-                    <div className={`hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide uppercase transition-colors ${isScrolled ? "text-slate-900" : "text-white/90"
+                    <div className={`hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide uppercase transition-colors ${isScrolled || isSpecialPage ? "text-slate-900" : "text-white/90"
                         }`}>
                         <a className="hover:text-primary transition-colors" href="/">
                             Home
                         </a>
                         <a className="hover:text-primary transition-colors" href="/lucky-girl">
                             Lucky Girl
+                        </a>
+                        <a className="hover:text-primary transition-colors" href="/bio">
+                            Bio
                         </a>
                         <a className="hover:text-primary transition-colors" href="/media">
                             Media
@@ -66,7 +72,7 @@ export default function Navbar() {
                     <div className="md:hidden flex items-center">
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className={`material-symbols-outlined transition-colors ${isScrolled || isMenuOpen ? "text-primary" : "text-white"}`}
+                            className={`material-symbols-outlined transition-colors ${isScrolled || isMenuOpen || isSpecialPage ? "text-primary" : "text-white"}`}
                         >
                             {isMenuOpen ? 'close' : 'menu'}
                         </button>
@@ -90,6 +96,13 @@ export default function Navbar() {
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 Lucky Girl
+                            </a>
+                            <a
+                                href="/bio"
+                                className="text-lg font-bold text-primary-dark uppercase tracking-widest"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Bio
                             </a>
                             <a
                                 href="/media"
