@@ -2,7 +2,8 @@ export default function Hero() {
     return (
         <header className="relative h-screen bg-clay text-white overflow-hidden flex flex-col">
             {/* Background patterns and overlays */}
-            <div className="absolute inset-0 z-0 bg-shuka opacity-5 mix-blend-overlay"></div>
+            <div className="absolute inset-0 z-0 bg-shuka opacity-15 mix-blend-overlay"></div>
+            <div className="absolute inset-0 z-0 bg-[url('/beads-pattern.png')] opacity-10 mix-blend-soft-light bg-repeat"></div>
 
             {/* 4-Column Grid Lines */}
             <div className="absolute inset-0 z-0 flex pointer-events-none">
@@ -15,11 +16,8 @@ export default function Hero() {
 
             {/* Main Content Area */}
             <div className="relative z-10 flex-grow grid grid-cols-1 md:grid-cols-4 px-6 md:px-12 pt-32 pb-12">
-                {/* Left Column Bio */}
+                {/* Left Column - Empty for now as requested */}
                 <div className="mt-12 md:col-span-1 max-w-xs">
-                    <p className="text-[11px] leading-relaxed tracking-widest opacity-80 uppercase font-light">
-                        I'M A FICTION WRITER DRAWN TO HUMAN FLAWS, IMPOSSIBLE DECISIONS, AND THE HOPE HIDDEN INSIDE THEM. I WRITE FICTION THAT EXPLORES POWER, LOSS, AND THE FRAGILE CHOICES THAT DEFINE US.
-                    </p>
                 </div>
 
                 {/* Center Portrait Area - Now spanning remaining columns */}

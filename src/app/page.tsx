@@ -10,12 +10,8 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      <div className="wood-divider"></div>
-      <About />
-
-      <AboutIrene />
-
       <Books />
+      <AboutIrene />
       <Footer />
     </>
   );

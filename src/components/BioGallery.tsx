@@ -5,11 +5,9 @@ import { motion } from "framer-motion";
 
 export default function BioGallery() {
     const images = [
-        { src: "/about-author.jpg", alt: "Irene at a book signing", size: "lg:col-span-2 lg:row-span-2" },
-
-        { src: "/about-portrait.jpg", alt: "Portrait of Irene", size: "lg:col-span-1 lg:row-span-1" },
-
-        { src: "/irene-hero.png", alt: "Irene Hero Image", size: "lg:col-span-2 lg:row-span-1" },
+        { src: "/about-author.jpg", alt: "Irene Muchemi-Ndiritu", size: "lg:col-span-2 lg:row-span-2" },
+        { src: "/irene-contact.jpg", alt: "Irene during an interview", size: "lg:col-span-1 lg:row-span-1" },
+        { src: "/irene-hero.png", alt: "Lucky Girl author portrait", size: "lg:col-span-1 lg:row-span-1" },
     ];
 
     return (

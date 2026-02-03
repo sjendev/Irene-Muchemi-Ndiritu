@@ -8,18 +8,18 @@ export default function BioHero() {
         <section className="relative min-h-screen bg-background-light overflow-hidden">
             <div className="flex flex-col lg:flex-row min-h-screen">
                 {/* Left Side - Large Image with Bio Text */}
-                <div className="relative w-full lg:w-1/2 h-[70vh] lg:h-screen bg-primary-dark overflow-hidden">
+                <div className="relative w-full lg:w-1/2 h-[75vh] lg:h-screen bg-primary-dark overflow-hidden">
                     <motion.div
-                        initial={{ scale: 1.1, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
+                        initial={{ x: -100, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
                         transition={{ duration: 1.2, ease: "easeOut" }}
                         className="absolute inset-0"
                     >
                         <Image
-                            src="/about-author.jpg"
+                            src="/bio-new.jpg"
                             alt="Irene Muchemi-Ndiritu Bio"
                             fill
-                            className="object-contain object-bottom pt-20 lg:pt-32 p-4 lg:px-12 opacity-100"
+                            className="object-contain object-bottom pt-20 lg:pt-32 p-4 lg:px-12"
                             priority
                         />
                     </motion.div>
@@ -37,25 +37,9 @@ export default function BioHero() {
                     </div>
                 </div>
 
-                {/* Right Side - Profile and Intro */}
+                {/* Right Side - Intro */}
                 <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 lg:p-24 bg-primary-dark lg:bg-transparent">
                     <div className="max-w-xl mx-auto lg:mx-0">
-                        <motion.div
-                            initial={{ y: 30, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="relative mb-12 hidden lg:block"
-                        >
-                            <div className="w-64 h-64 relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10">
-                                <Image
-                                    src="/about-portrait.jpg"
-                                    alt="Irene Muchemi-Ndiritu Portrait"
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                        </motion.div>
-
                         <motion.div
                             initial={{ y: 30, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
@@ -89,18 +73,6 @@ export default function BioHero() {
                             </div>
                         </motion.div>
                     </div>
-                </div>
-            </div>
-
-            {/* Corner Accent for mobile profile if needed or just styling */}
-            <div className="absolute top-0 right-0 p-6 lg:p-12 z-10 lg:hidden">
-                <div className="w-20 h-20 relative rounded-full overflow-hidden border-2 border-accent-gold">
-                    <Image
-                        src="/about-portrait.jpg"
-                        alt="Irene"
-                        fill
-                        className="object-cover"
-                    />
                 </div>
             </div>
         </section>

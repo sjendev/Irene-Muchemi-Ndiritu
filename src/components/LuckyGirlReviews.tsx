@@ -1,4 +1,7 @@
+"use client";
+
 import React from 'react';
+import { motion } from "framer-motion";
 
 const reviews = [
     {
@@ -25,13 +28,25 @@ export default function LuckyGirlReviews() {
             <div className="absolute top-0 right-0 w-1/3 h-full bg-accent-gold/5 -skew-x-12 transform translate-x-1/4"></div>
 
             <div className="max-w-7xl mx-auto relative z-10">
-                <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight mb-16 text-center">
+                <motion.h2
+                    initial={{ y: 20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight mb-16 text-center"
+                >
                     Critical <span className="text-accent-gold">Praise</span>
-                </h2>
+                </motion.h2>
 
                 <div className="grid md:grid-cols-2 gap-12">
                     {reviews.map((review, index) => (
-                        <div key={index} className="bg-white/5 p-8 md:p-12 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
+                        <motion.div
+                            key={index}
+                            initial={{ y: 30, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            className="bg-white/5 p-8 md:p-12 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors"
+                        >
                             <span className="text-accent-gold text-6xl font-serif leading-none italic block mb-4">“</span>
                             <p className="text-lg md:text-xl font-light leading-relaxed mb-8 italic text-white/90">
                                 {review.text}
@@ -42,7 +57,7 @@ export default function LuckyGirlReviews() {
                                     {review.author}
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>

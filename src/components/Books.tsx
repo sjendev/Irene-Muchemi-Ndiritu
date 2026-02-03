@@ -1,91 +1,71 @@
+import Link from "next/link";
+
 export default function Books() {
     return (
-        <section className="py-24 px-6 max-w-7xl mx-auto" id="books">
-            <div className="grid md:grid-cols-3 gap-16 items-start">
-                <div>
-                    <h3 className="font-display text-2xl font-bold uppercase tracking-wider mb-8 border-b-2 border-primary/30 pb-4 text-primary-dark">
-                        About Lucky Girl
-                    </h3>
-                    <p className="text-slate-800 leading-relaxed mb-6">
-                        Lucky Girl by Irene Muchemi-Ndiritu is a coming-of-age story about
-                        Soila, a young Kenyan woman raised under a strict, religious mother
-                        in Nairobi.
-                    </p>
-                    <p className="text-slate-800 leading-relaxed">
-                        Seeking freedom, she moves to New York in the 1990s for college,
-                        where she faces cultural clashes, racism, and questions of identity.
-                        As she navigates love, independence, and belonging, Soila is forced
-                        path.
-                    </p>
-                    <div className="mt-8 space-y-6">
-                        <div className="border-l-2 border-accent-gold pl-4 py-1">
-                            <p className="text-slate-800 italic text-sm mb-2">
-                                "Lucky Girl is at its strongest when Muchemi-Ndiritu addresses the topic of American racism."
-                            </p>
-                            <p className="text-primary font-bold text-xs uppercase tracking-wider">
-                                — New York Times Book Review
-                            </p>
-                        </div>
-                        <div className="border-l-2 border-accent-gold pl-4 py-1">
-                            <p className="text-slate-800 italic text-sm mb-2">
-                                "Readers will find a poignant, memorable voice they’ll feel lucky to have met."
-                            </p>
-                            <p className="text-primary font-bold text-xs uppercase tracking-wider">
-                                — Harper's Bazaar
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex justify-center">
-                    <div className="relative group">
-                        <div className="absolute inset-0 bg-accent-ochre transform rotate-3 rounded-sm group-hover:rotate-6 transition-transform"></div>
-                        <div className="relative shadow-2xl transform hover:-translate-y-2 transition-transform duration-500 border-4 border-white">
-                            <img
-                                alt="Lucky Girl Book Cover"
-                                className="w-full max-w-[320px] rounded-sm"
-                                src="/lucky-girl-cover.webp"
-                            />
+        <section className="py-32 px-6 bg-white overflow-hidden" id="lucky-girl">
+            <div className="max-w-7xl mx-auto">
+                <div className="grid md:grid-cols-12 gap-12 items-center">
+
+                    {/* Quotes Column - Main Text */}
+                    <div className="md:col-span-5 space-y-12">
+                        <h3 className="font-display text-accent-gold uppercase tracking-[0.3em] text-sm font-bold mb-8">
+                            Lucky Girl
+                        </h3>
+
+                        <div className="space-y-10">
+                            {[
+                                {
+                                    text: "Lucky Girl is at its strongest when Muchemi-Ndiritu addresses the topic of American racism.",
+                                    author: "New York Times Book Review"
+                                },
+                                {
+                                    text: "Readers will find a poignant, memorable voice they’ll feel lucky to have met.",
+                                    author: "Harper's Bazaar"
+                                },
+                                {
+                                    text: "Muchemi-Ndiritu is a master of knitting together a narrative and then pulling away at the threads to unravel it.",
+                                    author: "Brittle Paper"
+                                }
+                            ].map((quote, i) => (
+                                <div key={i} className="border-l-4 border-accent-gold pl-6 py-2">
+                                    <p className="text-slate-800 italic text-xl md:text-2xl leading-relaxed mb-3">
+                                        "{quote.text}"
+                                    </p>
+                                    <p className="text-primary-dark font-display font-bold text-xs uppercase tracking-widest">
+                                        — {quote.author}
+                                    </p>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                </div>
-                <div>
-                    <h3 className="font-display text-2xl font-bold uppercase tracking-wider mb-8 border-b-2 border-primary/30 pb-4 text-primary-dark">
-                        Where to Buy
-                    </h3>
-                    <ul className="space-y-4">
-                        <li className="flex justify-between items-center group cursor-pointer border-b border-primary/10 pb-3 hover:bg-primary/5 px-2 rounded transition-colors">
-                            <span className="font-bold text-slate-800">
-                                Amazon
-                            </span>
-                            <span className="material-symbols-outlined text-accent-gold transition-transform group-hover:translate-x-1">
-                                arrow_forward
-                            </span>
-                        </li>
-                        <li className="flex justify-between items-center group cursor-pointer border-b border-primary/10 pb-3 hover:bg-primary/5 px-2 rounded transition-colors">
-                            <span className="font-bold text-slate-800">
-                                Exclusive Books
-                            </span>
-                            <span className="material-symbols-outlined text-accent-gold transition-transform group-hover:translate-x-1">
-                                arrow_forward
-                            </span>
-                        </li>
-                        <li className="flex justify-between items-center group cursor-pointer border-b border-primary/10 pb-3 hover:bg-primary/5 px-2 rounded transition-colors">
-                            <span className="font-bold text-slate-800">
-                                Takealot
-                            </span>
-                            <span className="material-symbols-outlined text-accent-gold transition-transform group-hover:translate-x-1">
-                                arrow_forward
-                            </span>
-                        </li>
-                        <li className="flex justify-between items-center group cursor-pointer border-b border-primary/10 pb-3 hover:bg-primary/5 px-2 rounded transition-colors">
-                            <span className="font-bold text-slate-800">
-                                Good Reads
-                            </span>
-                            <span className="material-symbols-outlined text-accent-gold transition-transform group-hover:translate-x-1">
-                                arrow_forward
-                            </span>
-                        </li>
-                    </ul>
+
+                    {/* Book Cover Column */}
+                    <div className="md:col-span-4 flex justify-center">
+                        <Link href="/lucky-girl" className="relative group block">
+                            <div className="absolute inset-0 bg-accent-gold/20 transform rotate-6 rounded-sm group-hover:rotate-12 transition-transform duration-500"></div>
+                            <div className="relative shadow-[0_20px_50px_rgba(0,0,0,0.3)] transform group-hover:-translate-y-4 transition-transform duration-700 border-8 border-white">
+                                <img
+                                    alt="Lucky Girl Book Cover"
+                                    className="w-full max-w-[340px] rounded-sm"
+                                    src="/lucky-girl-cover.webp"
+                                />
+                            </div>
+                            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-shuka opacity-20 mix-blend-multiply z-[-1]"></div>
+                        </Link>
+                    </div>
+
+                    {/* CTA Column */}
+                    <div className="md:col-span-3 flex md:justify-end">
+                        <div className="text-center md:text-right">
+                            <Link
+                                href="/lucky-girl#buy-now"
+                                className="inline-block bg-accent-gold text-white hover:bg-accent-ochre px-10 py-5 rounded-full font-display font-bold uppercase tracking-widest text-sm transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 transform active:scale-95"
+                            >
+                                Purchase Lucky Girl
+                            </Link>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>

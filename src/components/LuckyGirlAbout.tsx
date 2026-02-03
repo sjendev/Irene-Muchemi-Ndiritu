@@ -1,10 +1,19 @@
+"use client";
+
 import React from 'react';
+import { motion } from "framer-motion";
 
 export default function LuckyGirlAbout() {
     return (
-        <section className="py-24 px-6 bg-background-light" id="about-book">
+        <section className="py-24 px-6 bg-background-light overflow-hidden" id="about-book">
             <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-                <div className="order-2 lg:order-1">
+                <motion.div
+                    initial={{ x: -50, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="order-2 lg:order-1"
+                >
                     <div className="relative group max-w-md mx-auto">
                         <div className="absolute inset-0 bg-accent-ochre transform rotate-3 rounded-sm"></div>
                         <div className="relative shadow-2xl border-4 border-white">
@@ -15,9 +24,15 @@ export default function LuckyGirlAbout() {
                             />
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
-                <div className="order-1 lg:order-2">
+                <motion.div
+                    initial={{ x: 50, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="order-1 lg:order-2"
+                >
                     <h2 className="font-display text-2xl font-bold uppercase tracking-[0.3em] text-accent-ochre mb-4">
                         The Story
                     </h2>
@@ -39,7 +54,7 @@ export default function LuckyGirlAbout() {
                             As Soila navigates new friendships, first loves, and the harsh realities of independence, she must decide which parts of her past to carry with her and which to leave behind.
                         </p>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );

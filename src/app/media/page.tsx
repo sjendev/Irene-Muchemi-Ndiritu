@@ -36,9 +36,42 @@ const quotes = [
     }
 ];
 
+const mediaItems = [
+    {
+        title: "Irene Muchemi-Ndiritu on Relationship Dynamics in Her Novel LUCKY GIRL, and Becoming a Writer",
+        source: "YouTube",
+        link: "https://www.youtube.com/watch?v=yUnkBnG8PVI",
+        type: "Interview"
+    },
+    {
+        title: "The Blessing of Kali",
+        source: "The Yale Review",
+        link: "https://yalereview.org/article/blessing-kali",
+        type: "Feature"
+    },
+    {
+        title: "On Navigating American Racism as an African Immigrant",
+        source: "LitHub",
+        link: "https://lithub.com/irene-muchemi-ndiritu-on-navigating-american-racism-as-an-african-immigrant/",
+        type: "Article"
+    },
+    {
+        title: "Book Review: Lucky Girl by Irene Muchemi-Ndiritu",
+        source: "Feminist Book Club",
+        link: "https://www.feministbookclub.com/irene-muchemi-ndiritu/",
+        type: "Review"
+    },
+    {
+        title: "Review: Secrets, freedom and grind culture – ‘Lucky Girl’ explores complex African mother-daughter relations",
+        source: "News24",
+        link: "https://www.news24.com/life/books/review-secrets-freedom-and-grind-culture-lucky-girl-explores-complex-african-mother-daughter-relations-20230816",
+        type: "Review"
+    }
+];
+
 export default function MediaPage() {
     return (
-        <main className="bg-background-light min-h-screen">
+        <main className="bg-background-light min-h-screen font-sans">
             <Navbar />
 
             {/* Media Hero */}
@@ -54,31 +87,96 @@ export default function MediaPage() {
                 </div>
             </section>
 
-            {/* Quotes Gallery */}
-            <section className="py-24 px-6 max-w-5xl mx-auto">
-                <div className="space-y-24">
-                    {quotes.map((quote, index) => (
-                        <div
-                            key={index}
-                            className="relative group animate-fade-in"
-                            style={{ animationDelay: `${index * 100}ms` }}
-                        >
-                            <span className="absolute -top-12 -left-8 md:-left-12 font-display text-[150px] text-clay/5 select-none pointer-events-none">
-                                “
-                            </span>
-                            <div className="relative z-10">
-                                <p className="text-xl md:text-3xl font-light italic leading-relaxed text-slate-800 mb-8 border-l-4 border-accent-gold pl-8 md:pl-12">
-                                    {quote.text}
-                                </p>
-                                <div className="flex items-center gap-4 pl-8 md:pl-12">
-                                    <div className="h-px w-8 bg-accent-ochre"></div>
-                                    <p className="font-display text-lg md:text-xl font-bold text-primary-dark">
-                                        {quote.author}
-                                    </p>
-                                </div>
+            {/* Photo Gallery Slideshow Placeholder */}
+            <section className="py-24 px-6 bg-white overflow-hidden">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight mb-16 text-center text-primary-dark">
+                        Photo <span className="text-accent-gold">Gallery</span>
+                    </h2>
+
+                    <div className="relative group aspect-[16/9] bg-slate-100 rounded-3xl overflow-hidden shadow-2xl">
+                        <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-display text-xl uppercase tracking-widest italic animate-pulse">
+                            Slideshow of photos coming soon...
+                        </div>
+                        {/* Placeholder for actual slideshow implementation */}
+                        <div className="absolute inset-x-0 bottom-0 p-8 flex justify-between items-end bg-gradient-to-t from-black/20 to-transparent">
+                            <div className="flex gap-2">
+                                <span className="w-12 h-1 bg-white/40 rounded-full"></span>
+                                <span className="w-12 h-1 bg-white rounded-full"></span>
+                                <span className="w-12 h-1 bg-white/40 rounded-full"></span>
                             </div>
                         </div>
-                    ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Media Links Section */}
+            <section className="py-24 px-6 bg-cream/30">
+                <div className="max-w-5xl mx-auto">
+                    <h2 className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tight mb-16 text-center text-primary-dark">
+                        Interviews <span className="text-accent-gold">&</span> Features
+                    </h2>
+
+                    <div className="grid gap-6">
+                        {mediaItems.map((item, index) => (
+                            <a
+                                key={index}
+                                href={item.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group block bg-white border border-clay/10 p-8 rounded-xl hover:shadow-2xl hover:border-accent-gold/50 transition-all duration-500 transform hover:-translate-y-1"
+                            >
+                                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                                    <div className="space-y-2">
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-accent-gold bg-accent-gold/10 px-3 py-1 rounded-full">
+                                                {item.type}
+                                            </span>
+                                            <span className="text-xs uppercase tracking-widest font-medium text-slate-400">
+                                                {item.source}
+                                            </span>
+                                        </div>
+                                        <h3 className="text-xl md:text-2xl font-display font-bold text-primary-dark group-hover:text-accent-gold transition-colors leading-tight">
+                                            {item.title}
+                                        </h3>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-primary-dark font-display font-bold text-sm uppercase tracking-widest group-hover:gap-4 transition-all">
+                                        Read More
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M5 12h14m-7-7 7 7-7 7" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Other Works Section */}
+            <section className="py-24 px-6 bg-primary-dark text-white">
+                <div className="max-w-5xl mx-auto text-center">
+                    <h2 className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tight mb-16">
+                        Other <span className="text-accent-gold">Works</span>
+                    </h2>
+
+                    <div className="flex flex-wrap justify-center gap-8">
+                        {[
+                            { title: "Published Short Story 1", link: "#", color: "border-accent-gold text-accent-gold" },
+                            { title: "Published Short Story 2", link: "#", color: "border-accent-gold text-accent-gold" },
+                            { title: "Watch YouTube Video", link: "https://www.youtube.com/watch?v=yUnkBnG8PVI", color: "bg-accent-gold text-white" }
+                        ].map((work, i) => (
+                            <a
+                                key={i}
+                                href={work.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`px-10 py-5 rounded-full font-display font-bold uppercase tracking-widest text-sm transition-all border-2 ${work.color} hover:scale-105 active:scale-95 shadow-xl`}
+                            >
+                                {work.title}
+                            </a>
+                        ))}
+                    </div>
                 </div>
             </section>
 
