@@ -1,3 +1,7 @@
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -69,6 +73,12 @@ const mediaItems = [
     }
 ];
 
+const galleryImages = [
+    { src: "/gallery/gallery-1.jpg", alt: "Irene Muchemi-Ndiritu portrait" },
+    { src: "/gallery/gallery-2.jpg", alt: "Irene at a media event" },
+    { src: "/gallery/gallery-3.jpg", alt: "Author Irene Muchemi-Ndiritu" },
+];
+
 export default function MediaPage() {
     return (
         <main className="bg-background-light min-h-screen font-sans">
@@ -87,28 +97,38 @@ export default function MediaPage() {
                 </div>
             </section>
 
-            {/* Photo Gallery Slideshow Placeholder */}
+            {/* Photo Gallery Section */}
             <section className="py-24 px-6 bg-white overflow-hidden">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight mb-16 text-center text-primary-dark">
                         Photo <span className="text-accent-gold">Gallery</span>
                     </h2>
 
-                    <div className="relative group aspect-[16/9] bg-slate-100 rounded-3xl overflow-hidden shadow-2xl">
-                        <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-display text-xl uppercase tracking-widest italic animate-pulse">
-                            Slideshow of photos coming soon...
-                        </div>
-                        {/* Placeholder for actual slideshow implementation */}
-                        <div className="absolute inset-x-0 bottom-0 p-8 flex justify-between items-end bg-gradient-to-t from-black/20 to-transparent">
-                            <div className="flex gap-2">
-                                <span className="w-12 h-1 bg-white/40 rounded-full"></span>
-                                <span className="w-12 h-1 bg-white rounded-full"></span>
-                                <span className="w-12 h-1 bg-white/40 rounded-full"></span>
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {galleryImages.map((img, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, delay: index * 0.2 }}
+                                className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-xl group"
+                            >
+                                <Image
+                                    src={img.src}
+                                    alt={img.alt}
+                                    fill
+                                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-clay/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                                    <div className="w-12 h-1 bg-accent-gold"></div>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </section>
+
 
             {/* Media Links Section */}
             <section className="py-24 px-6 bg-cream/30">
