@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -75,11 +76,20 @@ const mediaItems = [
 
 const galleryImages = [
     { src: "/gallery/gallery-1.jpg", alt: "Irene Muchemi-Ndiritu portrait" },
-    { src: "/gallery/gallery-2.jpg", alt: "Irene at a media event" },
-    { src: "/gallery/gallery-3.jpg", alt: "Author Irene Muchemi-Ndiritu" },
+    { src: "/gallery/gallery-2.jpg", alt: "Irene during a media appearance" },
 ];
 
 export default function MediaPage() {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const nextSlide = () => {
+        setCurrentIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
+    };
+
+    const prevSlide = () => {
+        setCurrentIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
+    };
+
     return (
         <main className="bg-background-light min-h-screen font-sans">
             <Navbar />
@@ -97,37 +107,73 @@ export default function MediaPage() {
                 </div>
             </section>
 
-            {/* Photo Gallery Section */}
+            {/* Photo Gallery Section - Carousel */}
             <section className="py-24 px-6 bg-white overflow-hidden">
-                <div className="max-w-7xl mx-auto">
+                <div className="max-w-5xl mx-auto">
                     <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight mb-16 text-center text-primary-dark">
                         Photo <span className="text-accent-gold">Gallery</span>
                     </h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {galleryImages.map((img, index) => (
+                    <div className="relative aspect-[16/9] md:aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl bg-clay/5 group">
+                        <AnimatePresence mode="wait">
                             <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: index * 0.2 }}
-                                className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-xl group"
+                                key={currentIndex}
+                                initial={{ opacity: 0, x: 50 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -50 }}
+                                transition={{ duration: 0.6, ease: "easeInOut" }}
+                                className="absolute inset-0"
                             >
                                 <Image
-                                    src={img.src}
-                                    alt={img.alt}
+                                    src={galleryImages[currentIndex].src}
+                                    alt={galleryImages[currentIndex].alt}
                                     fill
-                                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                    priority
+                                    className="object-contain"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-clay/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                                    <div className="w-12 h-1 bg-accent-gold"></div>
-                                </div>
                             </motion.div>
-                        ))}
+                        </AnimatePresence>
+
+                        {/* Navigation Controls */}
+                        <div className="absolute inset-0 flex items-center justify-between px-4 md:px-8 pointer-events-none">
+                            <button
+                                onClick={prevSlide}
+                                className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/80 hover:bg-white text-clay shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 pointer-events-auto"
+                                aria-label="Previous image"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="m15 18-6-6 6-6" />
+                                </svg>
+                            </button>
+                            <button
+                                onClick={nextSlide}
+                                className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/80 hover:bg-white text-clay shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 pointer-events-auto"
+                                aria-label="Next image"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="m9 18 6-6-6-6" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        {/* Indicators */}
+                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+                            {galleryImages.map((_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => setCurrentIndex(i)}
+                                    className={`h-1.5 transition-all duration-300 rounded-full ${currentIndex === i ? "w-12 bg-accent-gold" : "w-6 bg-white/40 hover:bg-white/60"}`}
+                                    aria-label={`Go to slide ${i + 1}`}
+                                />
+                            ))}
+                        </div>
+
+                        {/* Texture Overlay */}
+                        <div className="absolute inset-0 pointer-events-none bg-texture opacity-10 mix-blend-overlay"></div>
                     </div>
                 </div>
             </section>
+
 
 
             {/* Media Links Section */}
